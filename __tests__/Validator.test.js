@@ -9,7 +9,7 @@ beforeEach(() => {
   v = new Validator();
 });
 
-describe('validator strings', () => {
+describe('string', () => {
   test('unrequired', () => {
     const schema = v.string();
     expect(schema.isValid('')).toBe(true);
@@ -33,7 +33,7 @@ describe('validator strings', () => {
   });
 });
 
-describe('validator number', () => {
+describe('number', () => {
   test('unrequired', () => {
     const schema = v.number();
     expect(schema.isValid(null)).toBe(true);
@@ -63,7 +63,7 @@ describe('validator number', () => {
   });
 });
 
-describe('validator array', () => {
+describe('array', () => {
   test('unrequired', () => {
     const schema = v.array();
     expect(schema.isValid(null)).toBe(true);
@@ -83,5 +83,21 @@ describe('validator array', () => {
 
     expect(schema.isValid(['hexlet'])).toBe(false);
     expect(schema.isValid(['hexlet', 'code-basics'])).toBe(true);
+  });
+});
+
+describe('object', () => {
+  test('shape', () => {
+    const schema = v.object();
+
+    schema.shape({
+      name: v.string().required(),
+      age: v.number().positive(),
+    });
+
+    expect(schema.isValid({ name: 'kolya', age: 100 })).toBe(true);
+    expect(schema.isValid({ name: 'maya', age: null })).toBe(false);
+    expect(schema.isValid({ name: '', age: null })).toBe(false);
+    expect(schema.isValid({ name: 'ada', age: -5 })).toBe(false);
   });
 });
