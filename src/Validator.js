@@ -1,14 +1,21 @@
 import StringValidator from './validators/StringValidator';
+import NumberValidator from './validators/NumberValidator';
 
 class Validator {
   constructor() {
-    this.vlidators = {
+    this.validators = {
       string: StringValidator,
+      number: NumberValidator,
     };
   }
 
   string() {
-    const CurValidator = this.vlidators.string;
+    const CurValidator = this.validators.string;
+    return new CurValidator();
+  }
+
+  number() {
+    const CurValidator = this.validators.number;
     return new CurValidator();
   }
 }
