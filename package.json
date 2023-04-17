@@ -1,0 +1,33 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/Eserian/js-oop-project-62/workflows/hexlet-check/badge.svg)](https://github.com/Eserian/js-oop-project-62/actions)",
+  "main": "index.js",
+  "simple-git-hooks": {
+    "pre-push": "make lint"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "test": "npx jest"
+  },
+  "author": "Evgenii Shevchenko",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "lodash": "^4.17.21"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@jest/globals": "^29.0.1",
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.0.0",
+    "jest": "^29.0.1",
+    "jest-cli": "^29.0.1",
+    "npm-check-updates": "^16.0.6",
+    "simple-git-hooks": "^2.8.0"
+  }
+}
