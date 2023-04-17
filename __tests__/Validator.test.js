@@ -62,3 +62,26 @@ describe('validator number', () => {
     expect(schema.isValid(5)).toBe(true);
   });
 });
+
+describe('validator array', () => {
+  test('unrequired', () => {
+    const schema = v.array();
+    expect(schema.isValid(null)).toBe(true);
+  });
+
+  test('required', () => {
+    const schema = v.array();
+    schema.required();
+
+    expect(schema.isValid(['hexlet'])).toBe(true);
+    expect(schema.isValid(null)).toBe(false);
+  });
+
+  test('sizeof', () => {
+    const schema = v.array();
+    schema.sizeOf(2);
+
+    expect(schema.isValid(['hexlet'])).toBe(false);
+    expect(schema.isValid(['hexlet', 'code-basics'])).toBe(true);
+  });
+});
