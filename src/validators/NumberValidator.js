@@ -3,8 +3,9 @@ import _ from 'lodash';
 const isNaN = (value) => value !== +value;
 
 class NumberValidator {
-  constructor(ops) {
+  constructor(ops, customRules) {
     this.ops = ops ?? [];
+    this.customRules = customRules ?? {};
   }
 
   required() {
@@ -20,7 +21,7 @@ class NumberValidator {
     const newOps = [...clonedOps, (value) => value > 0];
     this.ops = newOps;
 
-    return new NumberValidator(newOps);
+    return new NumberValidator(newOps, this.customRules);
   }
 
   range(min, max) {
@@ -28,11 +29,25 @@ class NumberValidator {
     const newOps = [...clonedOps, (value) => value >= min && value <= max];
     this.ops = newOps;
 
-    return new NumberValidator(newOps);
+    return new NumberValidator(newOps, this.customRules);
   }
 
   isValid(string) {
     return this.ops.reduce((acc, op) => (acc ? op(string) : false), true);
+  }
+
+  test(name, arg) {
+    const fn = this.customRules[name];
+
+    if (!fn) {
+      throw new Error(`No custom rule with name ${name}`);
+    }
+
+    const clonedOps = _.cloneDeep(this.ops);
+    const newOps = [...clonedOps, (value) => !!fn(value, arg)];
+    this.ops = newOps;
+
+    return new NumberValidator(newOps, this.customRules);
   }
 }
 

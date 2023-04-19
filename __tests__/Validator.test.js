@@ -101,3 +101,22 @@ describe('object', () => {
     expect(schema.isValid({ name: 'ada', age: -5 })).toBe(false);
   });
 });
+
+describe('custom', () => {
+  test('strings', () => {
+    const fn = (value, start) => value.startsWith(start);
+    v.addValidator('string', 'startWith', fn);
+
+    const schema = v.string().test('startWith', 'H');
+    expect(schema.isValid('exlet')).toBe(false);
+    expect(schema.isValid('Hexlet')).toBe(true);
+  });
+  test('numbers', () => {
+    const fn = (value, min) => value >= min;
+    v.addValidator('number', 'min', fn);
+
+    const schema = v.number().test('min', 5);
+    expect(schema.isValid(4)).toBe(false);
+    expect(schema.isValid(6)).toBe(true);
+  });
+});

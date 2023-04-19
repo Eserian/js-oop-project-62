@@ -1,8 +1,9 @@
 import _ from 'lodash';
 
 class StringValidator {
-  constructor(ops) {
+  constructor(ops, customRules) {
     this.ops = ops ?? [];
+    this.customRules = customRules ?? {};
   }
 
   required() {
@@ -10,7 +11,7 @@ class StringValidator {
     const newOps = [...clonedOps, (value) => !!value];
     this.ops = newOps;
 
-    return new StringValidator(newOps);
+    return new StringValidator(newOps, this.customRules);
   }
 
   contains(string) {
@@ -18,11 +19,25 @@ class StringValidator {
     const newOps = [...clonedOps, (value) => value.includes(string)];
     this.ops = newOps;
 
-    return new StringValidator(newOps);
+    return new StringValidator(newOps, this.customRules);
   }
 
   isValid(string) {
     return this.ops.reduce((acc, op) => (acc ? op(string) : false), true);
+  }
+
+  test(name, arg) {
+    const fn = this.customRules[name];
+
+    if (!fn) {
+      throw new Error(`No custom rule with name ${name}`);
+    }
+
+    const clonedOps = _.cloneDeep(this.ops);
+    const newOps = [...clonedOps, (value) => !!fn(value, arg)];
+    this.ops = newOps;
+
+    return new StringValidator(newOps, this.customRules);
   }
 }
 
