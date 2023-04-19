@@ -14,7 +14,7 @@ class ArrayValidator {
     return new ArrayValidator(newOps, this.customRules);
   }
 
-  sizeOf(size) {
+  sizeof(size) {
     const clonedOps = _.cloneDeep(this.ops);
     const newOps = [...clonedOps, (value) => value.length === size];
     this.ops = newOps;

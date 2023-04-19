@@ -81,7 +81,7 @@ describe('array', () => {
 
   test('sizeof', () => {
     const schema = v.array();
-    schema.sizeOf(2);
+    schema.sizeof(2);
 
     expect(schema.isValid(['hexlet'])).toBe(false);
     expect(schema.isValid(['hexlet', 'code-basics'])).toBe(true);
