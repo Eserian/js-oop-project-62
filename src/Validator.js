@@ -1,7 +1,7 @@
-import StringValidator from './validators/StringValidator';
-import NumberValidator from './validators/NumberValidator';
-import ArrayValidator from './validators/ArrayValidator';
-import ObjectValidator from './validators/ObjectValidator';
+import StringValidator from './validators/StringValidator.js';
+import NumberValidator from './validators/NumberValidator.js';
+import ArrayValidator from './validators/ArrayValidator.js';
+import ObjectValidator from './validators/ObjectValidator.js';
 
 class Validator {
   constructor() {

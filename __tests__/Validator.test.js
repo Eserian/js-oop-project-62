@@ -1,7 +1,7 @@
 import {
   test, expect, beforeEach, describe,
 } from '@jest/globals';
-import Validator from '../src';
+import Validator from '../src/Validator.js';
 
 let v;
 
