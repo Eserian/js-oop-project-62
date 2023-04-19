@@ -18,7 +18,7 @@ class NumberValidator {
 
   positive() {
     const clonedOps = _.cloneDeep(this.ops);
-    const newOps = [...clonedOps, (value) => value >= 0];
+    const newOps = [...clonedOps, (value) => !value || value > 0];
     this.ops = newOps;
 
     return new NumberValidator(newOps, this.customRules);
