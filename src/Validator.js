@@ -35,7 +35,7 @@ class Validator {
 
   object() {
     const CurValidator = this.validators.object;
-    return new CurValidator(null, this.customRules.object);
+    return new CurValidator();
   }
 
   addValidator(type, name, cb) {

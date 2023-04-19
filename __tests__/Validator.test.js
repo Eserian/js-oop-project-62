@@ -37,6 +37,7 @@ describe('number', () => {
   test('unrequired', () => {
     const schema = v.number();
     expect(schema.isValid(null)).toBe(true);
+    expect(schema.positive().isValid(null)).toBe(true);
   });
 
   test('required', () => {
@@ -52,6 +53,7 @@ describe('number', () => {
     schema.required();
 
     expect(schema.positive().isValid(10)).toBe(true);
+    expect(schema.positive().isValid(null)).toBe(false);
   });
 
   test('range', () => {
@@ -96,7 +98,7 @@ describe('object', () => {
     });
 
     expect(schema.isValid({ name: 'kolya', age: 100 })).toBe(true);
-    expect(schema.isValid({ name: 'maya', age: null })).toBe(false);
+    expect(schema.isValid({ name: 'maya', age: null })).toBe(true);
     expect(schema.isValid({ name: '', age: null })).toBe(false);
     expect(schema.isValid({ name: 'ada', age: -5 })).toBe(false);
   });

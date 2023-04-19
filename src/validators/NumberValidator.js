@@ -18,7 +18,7 @@ class NumberValidator {
 
   positive() {
     const clonedOps = _.cloneDeep(this.ops);
-    const newOps = [...clonedOps, (value) => value > 0];
+    const newOps = [...clonedOps, (value) => value >= 0];
     this.ops = newOps;
 
     return new NumberValidator(newOps, this.customRules);
@@ -32,8 +32,8 @@ class NumberValidator {
     return new NumberValidator(newOps, this.customRules);
   }
 
-  isValid(string) {
-    return this.ops.reduce((acc, op) => (acc ? op(string) : false), true);
+  isValid(value) {
+    return this.ops.reduce((acc, op) => (acc ? op(value) : false), true);
   }
 
   test(name, arg) {

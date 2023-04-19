@@ -22,8 +22,8 @@ class StringValidator {
     return new StringValidator(newOps, this.customRules);
   }
 
-  isValid(string) {
-    return this.ops.reduce((acc, op) => (acc ? op(string) : false), true);
+  isValid(value) {
+    return this.ops.reduce((acc, op) => (acc ? op(value) : false), true);
   }
 
   test(name, arg) {
