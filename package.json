@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Eserian/js-oop-project-62/workflows/hexlet-check/badge.svg)](https://github.com/Eserian/js-oop-project-62/actions)",
-  "main": "index.js",
+  "main": "src/index.js",
   "simple-git-hooks": {
     "pre-push": "make lint"
   },
